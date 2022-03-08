@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JS_time_test.js"></script>
+</head>
+<body>
+    
+        <script>
+        
+        function getDayinfo(date)
+        {
+        var day = new Date(prompt('Введите дату')); //ввод в формате гг.мм.дд
+              
+        var weekday=new Array(7);
+            weekday[0]="Воскресенье";
+            weekday[1]="Понедельник";
+            weekday[2]="Вторник";
+            weekday[3]="Среда";
+            weekday[4]="Четверг";
+            weekday[5]="Пятница";
+            weekday[6]="Суббота";
+        
+       
+        var month=new Array(12);
+            month[0]="Января";
+            month[1]="Февраля";
+            month[2]="Марта";
+            month[3]="Апреля";
+            month[4]="Мая";
+            month[5]="Июня";
+            month[6]="Июля";
+            month[7]="Августа";
+            month[8]="Сентября";
+            month[9]="Октября";
+            month[10]="Ноября";
+            month[11]="Декабря";
+        
+            var oneJan = new Date(day.getFullYear(),0,1);  //подсчет недели в году
+            var numberOfDays = Math.floor((day - oneJan) / (24 * 60 * 60 * 1000)); // я не смог сделать неделю в месяце и хотел бы увидеть решение
+            var result = Math.ceil(( day.getDay() + 1 + numberOfDays) / 7);       
+        
+
+           /* const d1 = new Date();
+            const date1 = d1.getDate();
+           const day1 = d1.getDay();
+            const weekOfMonth = Math.ceil((date1 - 1 - day1) / 7);
+            //console.log(weekOfMonth)*/
+            
+                        const week = {
+                0: 0, //Воскресенье
+                1: 0, //Понедельник
+                2: 0, //Вторник
+                3: 0, //Среда
+                4: 0, //Четверг
+                5: 0, //Пятница
+                6: 0 //Суббота
+            }
+
+            //let day1 = new Date(2022, 4, 31);
+
+
+            let weeksInMonth = 0;
+            let firstDay = new Date(day.getFullYear(), day.getMonth(), 1);
+
+            for (let key in week) { 
+                if ((day.getDay() < firstDay.getDay() && day.getDay() != 0) || firstDay.getDay() == 0) {
+                weeksInMonth++;
+                break;
+    
+    }
+}
+
+            for (let i = 1; i <= day.getDate(); i++) { //считается количество каждых дней недели от 1 до заданого 
+                let daynight = new Date(day.getFullYear(), day.getMonth(), i);
+                week[daynight.getDay()] += 1;
+            }
+
+            weeksInMonth += Math.max(week[0],week[1],week[2],week[3],week[3],week[4],week[5],week[6]);
+
+
+
+        document.write(weekday[day.getDay()] + ', ' + (weeksInMonth)+ ' неделя ' + month[day.getMonth()] + ' ' + day.getFullYear() + ' ' + 'года, ' + (result) + ' неделя года' ); //вывод на страницу
+        //document.write((result) + 'неделя года');
+        }
+        getDayinfo();
+        
+     
+   
+    </script>
+<div id="date"></div>
+</body>
+</html>
